@@ -1,9 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: '<app-sub *ngIf="show"></app-sub>',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  show = true;
+
+  ngOnInit(): void {
+    setInterval(
+      () => this.show = !this.show,
+      50
+    );
+  }
 }
