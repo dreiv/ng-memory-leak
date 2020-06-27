@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DummyService } from '../dummy.service';
 
 @Component({
   selector: 'app-sub',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sub.component.css']
 })
 export class SubComponent implements OnInit {
+  randomValue = 0;
 
-  constructor() { }
+  constructor(private dummyService: DummyService) {
+  }
 
   ngOnInit(): void {
+    this.dummyService.$some.subscribe(value => {
+      this.randomValue = value;
+    })
   }
 
 }
